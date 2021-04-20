@@ -14,6 +14,8 @@ public class SeedSearch {
         settings = SearchSettings.loadSettings();
         SeedRunner runner = new SeedRunner(settings);
         ArrayList<Long> foundSeeds = new ArrayList<>();
+
+        long beginTime = System.nanoTime();
         for (long seed = settings.startSeed; seed < settings.endSeed; seed++) {
             if (runner.runSeed(seed)) {
                 foundSeeds.add(seed);
@@ -22,6 +24,9 @@ public class SeedSearch {
                 }
             }
         }
+        long endTime = System.nanoTime();
+        double duration = (endTime - beginTime) / 1000000000.0;
+        System.out.println(String.format("Searched %d seeds in %f seconds.", settings.endSeed - settings.startSeed, duration));
         System.out.println(String.format("%d seeds found: ", foundSeeds.size()));
         System.out.println(foundSeeds);
 
