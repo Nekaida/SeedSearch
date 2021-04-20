@@ -135,10 +135,8 @@ public class SeedRunner {
 
         ArrayList<NeowReward> neowRewards = getNeowRewards();
         seedResult.addNeowRewards(neowRewards);
-        if (settings.neowChoice < 0 || settings.neowChoice > 3) {
-            throw new RuntimeException("The 'neowChoice' setting must be between 0 and 3.");
-        }
-        claimNeowReward(neowRewards.get(settings.neowChoice));
+        int selectedNeowOption = selectNeowReward(neowRewards);
+        claimNeowReward(neowRewards.get(selectedNeowOption));
 
         runPath(exordiumPath);
         getBossRewards();
@@ -196,6 +194,18 @@ public class SeedRunner {
         rewards.add(new NeowReward(2));
         rewards.add(new NeowReward(3));
         return rewards;
+    }
+
+    private int selectNeowReward(ArrayList<NeowReward> neowRewards) {
+        for (String neowChoice : settings.neowChoicesToTake) {
+            NeowReward.NeowRewardType type = NeowReward.NeowRewardType.valueOf(neowChoice);
+            for (int i = 0; i < 3; i++) {
+                if (neowRewards.get(i).type == type) {
+                    return i;
+                }
+            }
+        }
+        return 3; // default: boss relic swap
     }
 
     private void claimNeowReward(NeowReward neowOption) {

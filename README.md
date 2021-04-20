@@ -50,7 +50,27 @@ These room weights are used to determine which path is taken through each map. T
 * **potionsToBuy**: These are the only potions which will be bought, in order of priority.
 * **cardsToBuy**: These are the only cards which will be bought, in order of priority.
 * **bossRelicsToTake**: These are the only boss relics which will be taken, in order of priority. All others will be skipped.
-* **neowChoice**: Which Neow option to choose (0 to 3). 0 is the first option and 3 is the last (boss relic trade).
+* **neowChoicesToTake**: Which Neow options to choose, in order of priority. Negative effects are currently not considered. Default is boss relic swap (leave empty to always boss swap), possible values are:
+```
+"THREE_CARDS"
+"ONE_RANDOM_RARE_CARD"
+"THREE_RARE_CARDS"
+"RANDOM_COLORLESS"
+"RANDOM_COLORLESS_2"
+"UPGRADE_CARD"
+"REMOVE_CARD"
+"REMOVE_TWO"
+"TRANSFORM_CARD"
+"TRANSFORM_TWO_CARDS"
+"HUNDRED_GOLD"
+"TWO_FIFTY_GOLD"
+"RANDOM_COMMON_RELIC"
+"ONE_RARE_RELIC"
+"THREE_SMALL_POTIONS"
+"TEN_PERCENT_HP_BONUS"
+"TWENTY_PERCENT_HP_BONUS"
+"THREE_ENEMY_KILL"
+```
 * **useShovel**: Whether to dig at rest sites whenever available.
 * **speedrunPace**: If set to true, then the secret portal event will not spawn.
 * **act4**: If set to true, then the runs will include Act 4. Note that there is no check to ensure that Act 4 can be unlocked with the selected path.
